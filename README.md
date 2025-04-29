@@ -46,3 +46,18 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Patrones de diseño Aplicados
+
+a. **Patrón de Componentes Reutilizables**:
+
+  Se crea una carpeta components/ con componentes reutilizables que se emplean en varias pantallas, como OrderForm, ItemList, etc. Esta separación permite que el código sea más modular y fácil de mantener.
+
+b. **Patrón de State Management con Redux Toolkit**
+
+  Se emplea Redux Toolkit para gestionar el estado de la aplicación, como el estado de la sesión de usuario (authSlice), las órdenes (orderSlice), y el reporte diario (reportSlice).
+
+c. **Patrón de API Service**
+
+   Axios se utiliza para interactuar con el backend, y se centraliza la configuración de las peticiones HTTP en un servicio (api.ts), lo que ayuda a mantener el código limpio y facilita las pruebas.
