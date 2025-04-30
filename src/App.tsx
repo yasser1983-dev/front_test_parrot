@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import Login from "./components/Auth/Login";
+import OrderForm from "./components/POS/OrderForm";
+import DailyReport from "./components/Report/DailyReport";
+
+const App = () => {
+  const email = useSelector((state: RootState) => state.auth.email);
+
+/*  return (
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/pos" element={email ? <OrderForm /> : <Navigate to="/login" />} />
+          <Route path="/report" element={email ? <DailyReport /> : <Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to={email ? "/pos" : "/login"} />} />
+        </Routes>
+      </Router>
+  );*/
+      return (
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/pos" element={<OrderForm />} />
+          <Route path="/report" element={email ? <DailyReport /> : <Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to={email ? "/pos" : "/login"} />} />
+        </Routes>
+      </Router>
   );
-}
+};
 
 export default App;

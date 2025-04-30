@@ -1,0 +1,20 @@
+.loginWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 1rem;
+}
+
+.loginBox {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+.marginBottom{
+    margin-bottom: 1.5rem;
+}
