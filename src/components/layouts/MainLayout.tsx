@@ -28,11 +28,11 @@ const MainLayout = ({children}: MainLayoutProps) => {
                         alt="Parrot"
                         className={styles.logo}
                     />
-                    <h1>Sistema de ventas</h1>
+                    <h1>Sistema de venta rápida</h1>
                 </div>
                 <div className={styles.actions}>
-                    <Link to="/report" className={styles.link}>Ver reporte diario</Link>
-                    <Link to="/pos" className={styles.link}>Crear orden</Link>
+                    <Link to="/report" className={styles.link}>Reporte diario</Link>
+                    <Link to="/pos" className={styles.link}>Punto de venta</Link>
                     <span>{email}</span>
                     <Button
                         label="Cerrar sesión"

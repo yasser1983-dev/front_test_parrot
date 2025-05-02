@@ -4,17 +4,19 @@ import styles from './OrderForm.module.css';
 import {Dropdown} from 'primereact/dropdown';
 import {useOrderDispatch} from "../../hooks/sales/useOrderDispatch";
 import {useLoadDishes} from "../../hooks/sales/useLoadDishes";
-import {DishInterfaces} from '../../types/interfaces';
+import {DishInterfaces, OrderInterface} from '../../types/interfaces';
 import {InputNumber} from 'primereact/inputnumber';
 import {Controller, useForm} from "react-hook-form";
 import {FormValuesOrder} from "../../types/formValues";
 import {send_orders} from "../../services/salesServices";
+import {saveState} from "../../utils/localStorage";
 
 
 const OrderForm = () => {
     const {itemOptions, dishes} = useLoadDishes() as { itemOptions: [], dishes: DishInterfaces[] };
     const {
         token,
+        itemName,
         totalCost,
         setDish,
         dishTotalCost,
@@ -32,12 +34,16 @@ const OrderForm = () => {
     const onSubmit = async (data: FormValuesOrder) => {
         try {
             const result = await send_orders(token, data, totalCost);
+            const customerName = data.customerName;
+            const quantity = data.quantity;
+            const order: OrderInterface = {customerName, itemName, quantity, totalCost};
+            saveState(order, 'orders');
 
             if (!result || result.error) {
                 console.error("Error al enviar la orden.");
                 return;
             }
-            dispatchOrder();
+            dispatchOrder(order);
             reset({
                 customerName: "",
                 itemId: null,
@@ -54,7 +60,7 @@ const OrderForm = () => {
     return (
         <div className={styles.loginWrapper}>
             <div className={styles.loginBox}>
-                <h2>Formulario para una orden</h2>
+                <h2>Punto de venta</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
                     <div className={`p-field ${styles.marginBottom}`}>
                         <label htmlFor="customerName">Nombre del comensal</label>
@@ -152,13 +158,13 @@ const OrderForm = () => {
                     <div>
                         <Button
                             label="Agregar orden"
-                            onClick={dispatchOrder}
                             className="p-button-sm"
                         />
                     </div>
                 </form>
             </div>
         </div>
+
     );
 };
 

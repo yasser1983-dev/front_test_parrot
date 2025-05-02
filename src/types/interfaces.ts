@@ -20,8 +20,8 @@ export interface DishInterfaces {
 export interface OrderInterface {
     customerName: string;
     itemName: string;
-    quantity: number;
-    totalCost: number;
+    quantity?: number;
+    totalCost?: number;
 }
 
 export interface MainLayoutProps {

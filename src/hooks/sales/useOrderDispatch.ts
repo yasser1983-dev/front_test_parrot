@@ -1,8 +1,7 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addOrder} from "../../redux/slices/orderSlice";
-// import {logout} from "../../redux/slices/authSlice";
-import {DishInterfaces} from "../../types/interfaces";
+import {DishInterfaces, OrderInterface} from "../../types/interfaces";
 
 export const useOrderDispatch = (dishes: DishInterfaces[]) => {
     const dispatch = useDispatch();
@@ -13,16 +12,13 @@ export const useOrderDispatch = (dishes: DishInterfaces[]) => {
     const [totalCost, setTotalCost] = useState(0);
     const token = localStorage.getItem('token');
 
-    const dispatchOrder = () => {
-        const order = {customerName, itemName, quantity, totalCost};
-        dispatch(addOrder(order));
+    const dispatchOrder = (order:OrderInterface) => {
+        dispatch(addOrder([order]));
         setCustomerName("");
         setItemName("");
         setQuantity(1);
         setTotalCost(0);
     };
-
-    // const dispatchLogout = () => dispatch(logout());
 
     const dishTotalCost = (quantityValue: Number, itemIdOptional: Number = 0) => {
         setQuantity(Number(quantityValue));
@@ -47,6 +43,8 @@ export const useOrderDispatch = (dishes: DishInterfaces[]) => {
 
     return {
         token,
+        itemName,
+        customerName,
         totalCost,
         setDish,
         setTotalCost,
