@@ -3,11 +3,13 @@ import {useDispatch} from "react-redux";
 import {loginUser} from "../../services/authServices";
 import {setUser} from "../../redux/slices/authSlice";
 import {validateEmail} from "../../utils/common";
+import {useNavigate} from "react-router-dom";
 
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = async (email: string) => {
         setLoading(true);
@@ -20,6 +22,8 @@ export const useLogin = () => {
                 if (token) {
                     dispatch(setUser({email}));
                     localStorage.setItem("token", token);
+                    localStorage.setItem("email", email);
+                    navigate("/");
                 }
             } else {
                 setError(resultValidation);

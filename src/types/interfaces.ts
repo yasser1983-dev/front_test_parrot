@@ -2,6 +2,7 @@ import {ReactNode} from "react";
 
 export interface AuthState {
     email: string | null;
+    isLoading: boolean;
 }
 
 export interface ReportState {
