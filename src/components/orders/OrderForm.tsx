@@ -20,8 +20,7 @@ const OrderForm = () => {
         totalCost,
         setDish,
         dishTotalCost,
-        dispatchOrder,
-        setTotalCost,
+        registerInState,
     } = useOrderDispatch(dishes);
 
     const {
@@ -32,29 +31,17 @@ const OrderForm = () => {
     } = useForm<FormValuesOrder>();
 
     const onSubmit = async (data: FormValuesOrder) => {
-        try {
-            const result = await send_orders(token, data, totalCost);
-            const customerName = data.customerName;
-            const quantity = data.quantity;
-            const order: OrderInterface = {customerName, itemName, quantity, totalCost};
-            saveState(order, 'orders');
 
-            if (!result || result.error) {
-                console.error("Error al enviar la orden.");
-                return;
-            }
-            dispatchOrder(order);
-            reset({
-                customerName: "",
-                itemId: null,
-                quantity: 1,
-            });
-            setDish(0)
-            setTotalCost(0);
-
-        } catch (error) {
-            console.error("Excepción durante el envío:", error);
-        }
+        const result: Promise<any> = await send_orders(token, data);
+        const customerName = data.customerName;
+        const quantity = data.quantity;
+        const order: OrderInterface = {customerName, itemName, quantity, totalCost};
+        registerInState(order, result);
+        reset({
+            customerName: "",
+            itemId: null,
+            quantity: 1,
+        });
     };
 
     return (

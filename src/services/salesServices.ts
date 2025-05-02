@@ -18,7 +18,7 @@ export const get_dishes = async (token: string) => {
     }
 };
 
-export const send_orders = async (token: string | null, data: FormValuesOrder, totalCost: number) => {
+export const send_orders = async (token: string | null, data: FormValuesOrder): Promise<any> => {
     try {
         const headers = {
             headers: {

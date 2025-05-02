@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addOrder} from "../../redux/slices/orderSlice";
 import {DishInterfaces, OrderInterface} from "../../types/interfaces";
+import {saveState} from "../../utils/localStorage";
 
 export const useOrderDispatch = (dishes: DishInterfaces[]) => {
     const dispatch = useDispatch();
@@ -41,6 +42,23 @@ export const useOrderDispatch = (dishes: DishInterfaces[]) => {
         dishTotalCost(quantity, itemId);
     }
 
+    const registerInState =(order: OrderInterface, result: Promise<any>): void =>{
+        try {
+            saveState(order, 'orders');
+
+            if (!result) {
+                console.error("Error al enviar la orden.");
+                return;
+            }
+            dispatchOrder(order);
+            setDish(0)
+            setTotalCost(0);
+
+        } catch (error) {
+            console.error("Excepción durante el envío:", error);
+        }
+    }
+
     return {
         token,
         itemName,
@@ -49,6 +67,7 @@ export const useOrderDispatch = (dishes: DishInterfaces[]) => {
         setDish,
         setTotalCost,
         dishTotalCost,
-        dispatchOrder
+        dispatchOrder,
+        registerInState
     };
 };
