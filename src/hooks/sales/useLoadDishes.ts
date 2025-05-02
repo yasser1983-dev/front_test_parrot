@@ -6,10 +6,10 @@ export const useLoadDishes = () => {
     const [dishes, setDishes] = useState([]);
     const [loadingDishes, setLoadingDishes] = useState(true);
     const [errorLoadingDishes, setErrorLoadingDishes] = useState<Error | null>(null);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const loadDishes = async () => {
-            const token = localStorage.getItem('token');
             if (token) {
                 try {
                     const response = await get_dishes(token);
@@ -32,9 +32,9 @@ export const useLoadDishes = () => {
         };
 
         loadDishes();
-    }, []);
+    }, [token]);
 
-    return { itemOptions, dishes, loadingDishes, errorLoadingDishes };
+    return {itemOptions, dishes, loadingDishes, errorLoadingDishes};
 };
 
 

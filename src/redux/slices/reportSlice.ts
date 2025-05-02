@@ -1,26 +1,16 @@
-// src/redux/slices/reportSlice.ts
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {ReportState} from "../../types/interfaces";
+import {getDailyReport} from "../../services/reportServices";
 
 // Async thunk
 export const fetchDailyReport = createAsyncThunk(
     "report/fetchDailyReport",
-    async (filters: { startDate: string; endDate: string }) => {
-        const response = await axios.get("/api/sales-report", {
-            params: {
-                start_date: filters.startDate,
-                end_date: filters.endDate,
-            },
-        });
-        return response.data;
+    async ({startDate, endDate}: { startDate: string; endDate: string }) => {
+        const token = localStorage.getItem('token');
+        return await getDailyReport(startDate, endDate, token);
     }
 );
 
-interface ReportState {
-    data: any[];
-    loading: boolean;
-    error: string | null;
-}
 const initialState: ReportState = {
     data: [],
     loading: false,
@@ -43,7 +33,7 @@ const reportSlice = createSlice({
             })
             .addCase(fetchDailyReport.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message || "Error fetching report";
+                state.error = action.error.message || "Error obteniendo datos de rerporte";
             });
     },
 });

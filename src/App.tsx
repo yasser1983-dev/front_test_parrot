@@ -1,34 +1,24 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+import Login from "./components/auth/Login";
+import OrderFormPage from "./pages/OrderFormPage";
+import ReportPage from "./pages/ReportPage";
+import {useAppSelector} from "./hooks/hooks";
 
-import Login from "./components/Auth/Login";
-import OrderForm from "./components/POS/OrderForm";
-import DailyReport from "./components/Report/DailyReport";
 
 const App = () => {
-  const email = useSelector((state: RootState) => state.auth.email);
+    const email = useAppSelector((state) => state.auth.email);
 
-/*  return (
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/pos" element={email ? <OrderForm /> : <Navigate to="/login" />} />
-          <Route path="/report" element={email ? <DailyReport /> : <Navigate to="/login" />} />
-          <Route path="/" element={<Navigate to={email ? "/pos" : "/login"} />} />
-        </Routes>
-      </Router>
-  );*/
-      return (
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/pos" element={<OrderForm />} />
-          <Route path="/report" element={email ? <DailyReport /> : <Navigate to="/login" />} />
-          <Route path="/" element={<Navigate to={email ? "/pos" : "/login"} />} />
-        </Routes>
-      </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to={email ? "/pos" : "/login"}/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/pos" element={<OrderFormPage/>}/>
+                <Route path="/report" element={<ReportPage/>}/>
+                {/*<Route path="/report" element={email ? <DailyReport /> : <Navigate to="/login" />} />*/}
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;

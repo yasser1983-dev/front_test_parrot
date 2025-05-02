@@ -1,28 +1,27 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../services/authService";
-import { setUser } from "../../redux/slices/authSlice";
-import {validateEmail} from "../../utils/validators";
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {loginUser} from "../../services/authServices";
+import {setUser} from "../../redux/slices/authSlice";
+import {validateEmail} from "../../utils/common";
 
 export const useLogin = () => {
-    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const dispatch = useDispatch();
 
-    const handleLogin = async () => {
+    const handleLogin = async (email: string) => {
         setLoading(true);
         setError(null);
         try {
             const resultValidation: string | boolean = validateEmail(email)
             if (typeof resultValidation === 'boolean') {
                 const response = await loginUser(email);
-                const { token } = response;
+                const {token} = response;
                 if (token) {
-                    dispatch(setUser({ email }));
+                    dispatch(setUser({email}));
                     localStorage.setItem("token", token);
                 }
-            }else{
+            } else {
                 setError(resultValidation);
             }
         } catch (err) {
@@ -33,8 +32,6 @@ export const useLogin = () => {
     };
 
     return {
-        email,
-        setEmail,
         loading,
         error,
         handleLogin,
