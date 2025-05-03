@@ -9,8 +9,6 @@ import {InputNumber} from 'primereact/inputnumber';
 import {Controller, useForm} from "react-hook-form";
 import {FormValuesOrder} from "../../types/formValues";
 import {send_orders} from "../../services/salesServices";
-import {saveState} from "../../utils/localStorage";
-
 
 const OrderForm = () => {
     const {itemOptions, dishes} = useLoadDishes() as { itemOptions: [], dishes: DishInterfaces[] };
