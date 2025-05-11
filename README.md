@@ -126,6 +126,13 @@ Aislar llamadas HTTP en archivos de servicios para no acoplar lógica de red en 
 11. **Singleton**
 Para tener una sola instancia en todo el proyecto de las clases de servicio.
 
+12. **Feature-based Architecture (orientada a funcionalidades)**
+ Este patrón organiza el código por feature o dominio de negocio. Facilita la escalabilidad.Reduce el acoplamiento entre módulos.
+ Mejora la mantenibilidad y el entendimiento del código. Hace más simple trabajar en paralelo en distintos equipos o funcionalidades.
+
+13. **Relación con Domain-Driven Design (DDD)**
+Cada carpeta dentro de features/ representa un Bounded Context. Contiene todo lo necesario para funcionar de forma cohesiva y autónoma
+
 ### Ejecutar prueba
 ```bash
   npm test

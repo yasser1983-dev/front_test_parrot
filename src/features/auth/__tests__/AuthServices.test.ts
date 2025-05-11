@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { AuthServices } from '../AuthServices';
-import baseURL from '../../config';
+import baseURL from '../../../config';
 
 // Mock de la dependencia axios
 jest.mock('axios');

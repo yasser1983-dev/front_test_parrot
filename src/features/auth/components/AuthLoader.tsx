@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { setUser, finishLoading } from "../../redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../shared/hooks";
+import { setUser, finishLoading } from "../authSlice";
 
 const AuthLoader = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useAppDispatch();

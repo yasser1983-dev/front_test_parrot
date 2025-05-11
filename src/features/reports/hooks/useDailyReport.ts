@@ -1,7 +1,7 @@
-import {dateToString} from "../../utils/common";
-import {fetchDailyReport} from "../../redux/slices/reportSlice";
+import {dateToString} from "../../../utils/common";
+import {fetchDailyReport} from "../reportSlice";
 import {addLocale} from "primereact/api";
-import {useAppDispatch, useAppSelector} from "../hooks";
+import {useAppDispatch, useAppSelector} from "../../../shared/hooks";
 
 addLocale('es', {
     firstDayOfWeek: 1,

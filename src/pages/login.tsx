@@ -1,5 +1,5 @@
-import Login from "../components/auth/Login";
-import { useAppSelector } from "../hooks/hooks";
+import Login from "../features/auth/components/Login";
+import { useAppSelector } from "../shared/hooks";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 

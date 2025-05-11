@@ -6,8 +6,8 @@ import styles from '../../styles/MainLayout.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MainLayoutProps } from '../../types/interfaces';
-import { useLayout } from '../../hooks/layout/useLayout';
-import { useAppSelector } from '../../hooks/hooks';
+import { useLayout } from '../hooks/useLayout';
+import { useAppSelector } from '../../shared/hooks';
 import logo from '../../assets/images/logo.png';
 import word_parrot from '../../assets/images/word_parrot.svg';
 

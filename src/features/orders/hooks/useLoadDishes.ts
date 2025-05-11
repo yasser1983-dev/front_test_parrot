@@ -1,4 +1,4 @@
-import {SalesService} from "../../services/SalesServices";
+import {SalesService} from "../SalesServices";
 import {useEffect, useState} from "react";
 import {container} from "tsyringe";
 

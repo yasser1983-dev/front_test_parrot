@@ -1,11 +1,11 @@
     import React from "react";
     import {InputText} from 'primereact/inputtext';
     import {Button} from 'primereact/button';
-    import styles from '../../styles/Login.module.css';
-    import {useLogin} from "../../hooks/auth/useLogin";
+    import styles from '../../../styles/Login.module.css';
+    import {useLogin} from "../hooks/useLogin";
     import {Controller, useForm} from "react-hook-form";
-    import {validateEmail} from "../../utils/common";
-    import {FormValuesLogin} from "../../types/formValues";
+    import {validateEmail} from "../../../utils/common";
+    import {FormValuesLogin} from "../../../types/formValues";
 
     const Login = () => {
         const {loading, error, handleLogin} = useLogin();

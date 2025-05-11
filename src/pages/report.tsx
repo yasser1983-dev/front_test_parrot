@@ -1,5 +1,5 @@
-import ReportPage from "../components/report/ReportPage";
-import { useAppSelector } from "../hooks/hooks";
+import ReportPage from "../features/reports/components/ReportPage";
+import { useAppSelector } from "../shared/hooks";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 

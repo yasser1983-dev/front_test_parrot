@@ -1,7 +1,7 @@
 import {container} from 'tsyringe';
-import {SalesService} from './services/salesServices';
-import {ReportService} from "./services/reportServices";
-import {AuthServices} from "./services/authServices";
+import {SalesService} from './features/orders/SalesServices';
+import {ReportService} from "./features/reports/ReportServices";
+import {AuthServices} from "./features/auth/AuthServices";
 
 container.registerSingleton(AuthServices);
 

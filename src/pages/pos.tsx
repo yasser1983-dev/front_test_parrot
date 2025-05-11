@@ -1,5 +1,5 @@
-import OrderFormPage from "../components/orders/OrderFormPage";
-import { useAppSelector } from "../hooks/hooks";
+import OrderFormPage from "../features/orders/components/OrderFormPage";
+import { useAppSelector } from "../shared/hooks";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 

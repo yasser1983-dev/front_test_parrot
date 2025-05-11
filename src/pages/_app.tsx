@@ -8,7 +8,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css'; // Tema de Pri
 import 'primereact/resources/primereact.min.css'; // Estilos básicos de PrimeReact
 import 'primeicons/primeicons.css'; // Iconos de PrimeReact
 import '../styles/globals.css';
-import AuthLoader from "../components/auth/AuthLoader";
+import AuthLoader from "../features/auth/components/AuthLoader";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (

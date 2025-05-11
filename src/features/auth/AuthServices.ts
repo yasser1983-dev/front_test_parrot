@@ -1,7 +1,7 @@
 import axios from "axios";
-import baseURL from '../config';
+import baseURL from '../../config';
 import {injectable} from "tsyringe";
-import {BaseService} from "./BaseService";
+import {BaseService} from "../../shared/BaseService";
 
 @injectable()
 export class AuthServices extends BaseService{

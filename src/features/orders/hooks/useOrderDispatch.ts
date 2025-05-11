@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addOrder} from "../../redux/slices/orderSlice";
-import {DishInterfaces, OrderInterface} from "../../types/interfaces";
-import {saveState} from "../../utils/localStorage";
+import {addOrder} from "../orderSlice";
+import {DishInterfaces, OrderInterface} from "../../../types/interfaces";
+import {saveState} from "../../../utils/localStorage";
 
 export const useOrderDispatch = (dishes: DishInterfaces[]) => {
     const dispatch = useDispatch();

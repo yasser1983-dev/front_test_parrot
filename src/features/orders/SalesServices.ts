@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {injectable} from 'tsyringe';
-import baseURL from '../config';
-import {FormValuesOrder} from '../types/formValues';
-import {BaseService} from "./BaseService";
+import baseURL from '../../config';
+import {FormValuesOrder} from '../../types/formValues';
+import {BaseService} from "../../shared/BaseService";
 
 @injectable()
 export class SalesService extends BaseService {
