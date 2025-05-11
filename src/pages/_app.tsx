@@ -1,39 +1,24 @@
 import 'reflect-metadata';
-
-import {useEffect} from "react";
+import Head from 'next/head';
 import type {AppProps} from "next/app";
-import {Provider, useSelector} from "react-redux";
-import store, {RootState} from "../redux/store";
-import {finishLoading, setUser} from "../redux/slices/authSlice";
-import {useAppDispatch} from "../hooks/hooks";
+import {Provider} from "react-redux";
+import store from "../redux/store";
 
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; // Tema de PrimeReact
 import 'primereact/resources/primereact.min.css'; // Estilos básicos de PrimeReact
 import 'primeicons/primeicons.css'; // Iconos de PrimeReact
 import '../styles/globals.css';
-
-const AuthLoader = ({ children }: { children: React.ReactNode }) => {
-    const dispatch = useAppDispatch();
-    const isLoading = useSelector((state: RootState) => state.auth.isLoading);
-
-    useEffect(() => {
-        const savedEmail = localStorage.getItem("email");
-        if (savedEmail && savedEmail !== "null") {
-            dispatch(setUser({ email: savedEmail }));
-        } else {
-            dispatch(finishLoading());
-        }
-    }, [dispatch]);
-
-    if (isLoading) return <div>Loading...</div>;
-
-    return <>{children}</>;
-};
+import AuthLoader from "../components/auth/AuthLoader";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <Provider store={store}>
             <AuthLoader>
+                <Head>
+                    <title>Parrot proyecto | Sistema de venta rápida</title>
+                    <meta name="description" content="Aplicación web para la empresa Parrot. Esto es una prueba para simular sistema de venta" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
                 <Component {...pageProps} />
             </AuthLoader>
         </Provider>
