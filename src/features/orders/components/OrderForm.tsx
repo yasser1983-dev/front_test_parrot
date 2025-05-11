@@ -1,6 +1,6 @@
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import styles from '../../../styles/OrderForm.module.css';
+import styles from '../../../styles/orderForm.module.css';
 import {Dropdown} from 'primereact/dropdown';
 import {useOrderDispatch} from "../hooks/useOrderDispatch";
 import {useLoadDishes} from "../hooks/useLoadDishes";

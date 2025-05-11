@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import OrderForm from "./OrderForm";
+import OrderForm from "../OrderForm";
 
 test('renders order form and submits', () => {
     render(<OrderForm />);

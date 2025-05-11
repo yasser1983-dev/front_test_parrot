@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Login from './Login';
+import Login from '../Login';
 
-jest.mock('../hooks/useLogin', () => ({
+jest.mock('../../hooks/useLogin', () => ({
     useLogin: () => ({
         loading: false,
         error: null,

@@ -8,58 +8,98 @@ comensales. Se podrá usar desde dispositivos móviles y de escritorio.
 ### Estructura del Proyecto
 ```bash
 src/
-├── assets/                           # Archivos estáticos como imágenes, fuentes, etc.
+├── assets/                          # Archivos estáticos (imágenes, íconos, etc.)
 │   └── images/
-├── di/                               # Contenedor DI vive aquí
-│   ├── SalesServiceContext.tsx       # Hook y contexto React
-│   └── SalesServiceProvider.tsx      # Provider que inyecta instancia
-├── components/                       # Componentes reutilizables
-│   ├── auth/
-│   │   └── Login.tsx                 # Pantalla de inicio de sesión
-│   │   └── Login.test.tsx            # Test para autenticación
-│   │   └── Login.module.css          # Estilo para css
-│   ├── layouts/                          
-│   │   ├── MainLayout.module.css     # Estilo de la plantilla
-│   │   ├── MainLayout.tsx            # Plantilla del proyecto para poner banner, cierre sesion y menú simple
-│   ├── orders/
-│   │   ├── OrderFom.module.css       # Estilo del formalario punto de venta
-│   │   ├── OrderFom.tsx              # JSX del formulario punto de venta
-│   │   └── OrderTable.tsx            # JSX de la tabla para mostrar las órdenes de compra enviadas
-│   └── report/                       # Componente para reporte
-│       ├── DailyReport.module.css    # Estilo para la vista de reporte
-│       └── DailyReport.tsx           # Componente del reporte
-├── redux/                            # Configuración de Redux Toolkit
-│   ├── slices/                       
-│   │   ├── authSlice.ts              # Slice para manejo de autenticación
-│   │   ├── orderSlice.ts             # Slice para manejar las órdenes
-│   │   └── reportSlice.ts            # Slice para manejar el reporte diario
-│   └── store.ts                      # Configuración del store de Redux
-├── pages/                            # Funciones y utilidades comunes
-│   ├── OrderFormPages.tsx            # La página que aglutina los componentes para la pantalla del punto de venta
-│   └── ReportPages.ts                # La página que aglutina los componentes para la pantalla de reporte diario
-├── services/                         # API service para realizar las peticiones
-│   │   └── authService.ts            # Servicio específico de autenticación
-│   │   └── salesService.ts           # Servicio específico de órdenes
-│   │   └── reportService.ts          # Servicio específico de reportes
-│   └── api.ts                        # Servicio que contiene los métodos comunes de axios
-├── types/                            # Funciones y utilidades comunes
-│   ├── formValues.ts                 # Todos los types que se necesitan para los formularios
-│   └── interfaces.ts                 # Las interfaces de todo el proyecto
-├── utils/                            # Funciones y utilidades comunes
-│   ├── common.ts                     # Funciones de uso común para cualquier componente
-│   └── localStorage.ts               # Funciones para manejar el localStorage
-├── hooks/                            # Hooks personalizados
-│   ├── auth/
-│   │   └── useLogin.ts               # Hook para login
-│   ├── layout/
-│   │   └── useLayout.ts              # Hook para layout
-│   ├── sales/
-│   │   └── useLoadDishes.ts          # Hook para manejar los platillos de comidas
-│   │   └── useOrderDispatch.ts       # Hook para gestionar las ordenes
-│   └── report/
-│       └── useDailyReport.ts         # Hook para reportes
-├── App.tsx                           # Componente principal que incluye rutas y estado
-└── index.tsx                         # Entrada principal de la aplicación
+│       ├── logo.png
+│       └── word_parrot.svg
+
+├── features/                        # Dominios del negocio (modular, orientado a DDD)
+│   ├── auth/                        # Módulo de autenticación
+│   │   ├── components/              # Componentes propios del dominio
+│   │   │   ├── AuthLoader.ts
+│   │   │   └── Login.tsx
+│   │   │   └── __tests__/           # Tests de componentes
+│   │   │       ├── AuthLoader.test.ts
+│   │   │       └── Login.test.tsx
+│   │   ├── hooks/                   # Custom hooks ligados a auth
+│   │   │   └── useLogin.ts
+│   │   │   └── __tests__/           # Tests de hooks
+│   │   │       └── useLogin.test.ts
+│   │   ├── authSlice.ts             # Slice de Redux
+│   │   └── AuthService.ts           # Lógica de negocio / API
+
+│   ├── orders/                      # Módulo de pedidos
+│   │   ├── components/
+│   │   │   ├── OrderFormPage.tsx
+│   │   │   ├── OrderTable.tsx
+│   │   │   └── OrderForm.tsx
+│   │   │   └── __tests__/
+│   │   │       └── OrderForm.test.tsx
+│   │   ├── hooks/
+│   │   │   ├── useOrderDispatch.ts
+│   │   │   └── useLoadDishes.ts
+│   │   │   └── __tests__/
+│   │   │       └── useLoadDishes.test.ts
+│   │   ├── orderSlice.ts
+│   │   └── SalesServices.ts
+
+│   ├── reports/                     # Módulo de reportes
+│   │   ├── components/
+│   │   │   ├── DailyReports.tsx
+│   │   │   └── ReportPage.tsx
+│   │   │   └── __tests__/
+│   │   │       └── DailyReports.test.tsx
+│   │   ├── hooks/
+│   │   │   └── useDailyReports.ts
+│   │   │   └── __tests__/
+│   │   │       └── useDailyReports.test.ts
+│   │   ├── reportSlice.ts
+│   │   └── ReportServices.ts
+
+├── layouts/                         # Layouts reutilizables
+│   ├── components/
+│   │   └── MainLayout.tsx
+│   └── hooks/
+│       └── useLayout.ts
+
+├── pages/                           # Enrutamiento con Pages Router de Next.js
+│   ├── _app.tsx
+│   ├── index.tsx
+│   ├── login.tsx
+│   ├── pos.tsx
+│   └── report.tsx
+
+├── redux/                           # Configuración global de Redux Toolkit
+│   └── store.ts
+
+├── shared/                          # Código reutilizable común a varios dominios
+│   ├── BaseService.ts
+│   └── hooks.ts                     # Hooks reutilizables y genéricos
+
+├── styles/                          # Estilos globales y modulares
+│   ├── globals.css
+│   ├── index.css
+│   ├── login.module.css
+│   ├── mainLayout.module.css
+│   ├── dailyReports.module.css
+│   └── orderForm.module.css
+
+├── types/                           # Tipos y definiciones globales
+│   ├── formValues.ts
+│   ├── images.d.ts
+│   └── interfaces.ts
+
+├── utils/                           # Funciones utilitarias y helpers
+│   ├── common.ts
+│   └── localStorage.ts
+
+├── config.ts                        # Configuración global de la app
+├── ContainerConfig.ts              # Configuración por entorno o inyección
+├── jest.config.ts                  # Configuración de pruebas con Jest
+├── reportWebVitals.ts              # Métricas de rendimiento
+└── setupTests.ts                   # Inicialización de entorno de pruebas
+
+
 ```
 
 ### Requisitos previos antes de la instalación

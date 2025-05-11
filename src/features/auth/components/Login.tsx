@@ -1,7 +1,7 @@
     import React from "react";
     import {InputText} from 'primereact/inputtext';
     import {Button} from 'primereact/button';
-    import styles from '../../../styles/Login.module.css';
+    import styles from '../../../styles/login.module.css';
     import {useLogin} from "../hooks/useLogin";
     import {Controller, useForm} from "react-hook-form";
     import {validateEmail} from "../../../utils/common";

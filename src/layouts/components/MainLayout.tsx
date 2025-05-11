@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Button } from 'primereact/button';
-import styles from '../../styles/MainLayout.module.css';
+import styles from '../../styles/mainLayout.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MainLayoutProps } from '../../types/interfaces';
