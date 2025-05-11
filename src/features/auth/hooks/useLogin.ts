@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {AuthServices} from "../../services/authServices";
+import {AuthServices} from "../../services/AuthServices";
 import {setUser} from "../../redux/slices/authSlice";
 import {validateEmail} from "../../utils/common";
 import {useRouter} from "next/router";

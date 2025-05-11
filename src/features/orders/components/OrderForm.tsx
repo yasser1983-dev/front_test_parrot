@@ -1,14 +1,14 @@
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import styles from '../../styles/OrderForm.module.css';
+import styles from '../../../styles/OrderForm.module.css';
 import {Dropdown} from 'primereact/dropdown';
-import {useOrderDispatch} from "../../hooks/sales/useOrderDispatch";
-import {useLoadDishes} from "../../hooks/sales/useLoadDishes";
-import {OrderInterface} from '../../types/interfaces';
+import {useOrderDispatch} from "../../../hooks/sales/useOrderDispatch";
+import {useLoadDishes} from "../../../hooks/sales/useLoadDishes";
+import {OrderInterface} from '../../../types/interfaces';
 import {InputNumber} from 'primereact/inputnumber';
 import {Controller, useForm} from "react-hook-form";
-import {FormValuesOrder} from "../../types/formValues";
-import {SalesService} from "../../services/salesServices";
+import {FormValuesOrder} from "../../../types/formValues";
+import {SalesService} from "../../../services/SalesServices";
 import { container } from 'tsyringe';
 
 const OrderForm = () => {

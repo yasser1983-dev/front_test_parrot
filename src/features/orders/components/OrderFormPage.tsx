@@ -1,10 +1,10 @@
-import MainLayout from '../layouts/MainLayout';
+import MainLayout from '../../../components/layouts/MainLayout';
 import OrderForm from './OrderForm';
 import OrderTable from "./OrderTable";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {useEffect, useRef} from "react";
-import {loadState} from "../../utils/localStorage";
-import {addOrder} from "../../redux/slices/orderSlice";
+import {loadState} from "../../../utils/localStorage";
+import {addOrder} from "../../../redux/slices/orderSlice";
 
 
 const OrderFormPage = () => {

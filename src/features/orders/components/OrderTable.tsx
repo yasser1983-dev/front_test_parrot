@@ -1,6 +1,6 @@
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
-import {OrderInterface} from "../../types/interfaces";
+import {OrderInterface} from "../../../types/interfaces";
 
 
 const OrderTable = ({orders}: { orders: OrderInterface[] }) => (

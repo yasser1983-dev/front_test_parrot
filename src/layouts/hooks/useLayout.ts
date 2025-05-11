@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {logout} from "../../redux/slices/authSlice";
+import {logout} from "../../features/auth/authSlice";
 import {NextRouter, useRouter} from "next/router";
 
 export const useLayout = () => {

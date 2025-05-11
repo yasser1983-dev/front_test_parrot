@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ReportState} from "../../types/interfaces";
-import {ReportService} from "../../services/reportServices";
+import {ReportService} from "../../features/reports/ReportServices";
 import {container} from "tsyringe";
 
 // Async thunk
