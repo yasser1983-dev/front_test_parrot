@@ -1,15 +1,17 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {loginUser} from "../../services/authServices";
+import {AuthServices} from "../../services/authServices";
 import {setUser} from "../../redux/slices/authSlice";
 import {validateEmail} from "../../utils/common";
-import {useNavigate} from "react-router-dom";
+import {useRouter} from "next/router";
+import {container} from "tsyringe";
 
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const router = useRouter();
+    const service = container.resolve(AuthServices);
 
     const handleLogin = async (email: string) => {
         setLoading(true);
@@ -17,13 +19,13 @@ export const useLogin = () => {
         try {
             const resultValidation: string | boolean = validateEmail(email)
             if (typeof resultValidation === 'boolean') {
-                const response = await loginUser(email);
+                const response = await service.loginUser(email);
                 const {token} = response;
                 if (token) {
                     dispatch(setUser({email}));
                     localStorage.setItem("token", token);
                     localStorage.setItem("email", email);
-                    navigate("/");
+                    router.push("/");
                 }
             } else {
                 setError(resultValidation);

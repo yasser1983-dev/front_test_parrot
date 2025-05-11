@@ -1,3 +1,3 @@
-const baseURL = process.env.REACT_APP_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default baseURL;

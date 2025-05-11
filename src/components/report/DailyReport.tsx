@@ -2,7 +2,7 @@ import {Calendar} from 'primereact/calendar';
 import {Button} from "primereact/button";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
-import styles from './DailyReport.module.css';
+import styles from '../../styles/DailyReport.module.css';
 import {Controller, useForm} from "react-hook-form";
 import {FormValuesReport} from "../../types/formValues";
 import {useDailyreport} from "../../hooks/report/useDailyReport";

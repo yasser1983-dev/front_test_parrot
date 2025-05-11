@@ -1,15 +1,16 @@
-import {NavigateFunction} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {logout} from "../../redux/slices/authSlice";
+import {NextRouter, useRouter} from "next/router";
 
-export const useLayout = (navigate: NavigateFunction) => {
+export const useLayout = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         dispatch(logout());
-        navigate('/login');
+        router.push("/login");
     };
     return {
         handleLogout
