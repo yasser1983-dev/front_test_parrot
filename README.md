@@ -175,5 +175,9 @@ Cada carpeta dentro de features/ representa un Bounded Context. Contiene todo lo
 
 ### Ejecutar prueba
 ```bash
-  npm test
+  npm run test 
+```
+Para correr los test enfocado a una capa específica sin añadir configuración al package.json. Ejemplo
+```bash
+  npx jest --testPathPattern=AuthServices o npx jest -t 'AuthServices'
 ```
