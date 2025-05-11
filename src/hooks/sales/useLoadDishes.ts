@@ -1,18 +1,20 @@
-import {get_dishes} from "../../services/salesServices";
+import {SalesService} from "../../services/salesServices";
 import {useEffect, useState} from "react";
+import {container} from "tsyringe";
 
 export const useLoadDishes = () => {
     const [itemOptions, setItemOptions] = useState([]);
     const [dishes, setDishes] = useState([]);
-    const [loadingDishes, setLoadingDishes] = useState(true);
-    const [errorLoadingDishes, setErrorLoadingDishes] = useState<Error | null>(null);
+    const [, setLoadingDishes] = useState(true);
+    const [, setErrorLoadingDishes] = useState<Error | null>(null);
     const token = localStorage.getItem('token');
 
     useEffect(() => {
         const loadDishes = async () => {
             if (token) {
                 try {
-                    const response = await get_dishes(token);
+                    const service = container.resolve(SalesService);
+                    const response = await service.getDishes(token);
                     const formattedItems = response.map((item: { name: string; id: number }) => ({
                         label: item.name,
                         value: item.id,
@@ -22,7 +24,11 @@ export const useLoadDishes = () => {
                     setDishes(response);
                 } catch (error) {
                     console.error('Error al cargar los platillos:', error);
-                    setErrorLoadingDishes(error);
+                    if (error instanceof Error) {
+                        setErrorLoadingDishes(error);
+                    } else {
+                        setErrorLoadingDishes(new Error("Error desconocido"));
+                    }
                     setLoadingDishes(false);
                 }
             } else {
@@ -34,7 +40,7 @@ export const useLoadDishes = () => {
         loadDishes();
     }, [token]);
 
-    return {itemOptions, dishes, loadingDishes, errorLoadingDishes};
+    return {itemOptions, dishes};
 };
 
 

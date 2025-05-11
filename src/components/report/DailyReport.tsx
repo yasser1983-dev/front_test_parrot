@@ -32,7 +32,7 @@ const DailyReport = () => {
                             <Controller
                                 name="startDate"
                                 control={control}
-                                defaultValue={null}
+                                defaultValue={undefined}
                                 rules={{required: "La fecha de inicio es obligatoria"}}
                                 render={({field}) => (
                                     <Calendar
@@ -52,7 +52,7 @@ const DailyReport = () => {
                             <Controller
                                 name="endDate"
                                 control={control}
-                                defaultValue={null}
+                                defaultValue={undefined}
                                 rules={{required: "La fecha de fin es obligatoria"}}
                                 render={({field}) => (
                                     <Calendar

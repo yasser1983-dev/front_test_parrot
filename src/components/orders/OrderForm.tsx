@@ -4,14 +4,15 @@ import styles from './OrderForm.module.css';
 import {Dropdown} from 'primereact/dropdown';
 import {useOrderDispatch} from "../../hooks/sales/useOrderDispatch";
 import {useLoadDishes} from "../../hooks/sales/useLoadDishes";
-import {DishInterfaces, OrderInterface} from '../../types/interfaces';
+import {OrderInterface} from '../../types/interfaces';
 import {InputNumber} from 'primereact/inputnumber';
 import {Controller, useForm} from "react-hook-form";
 import {FormValuesOrder} from "../../types/formValues";
-import {send_orders} from "../../services/salesServices";
+import {SalesService} from "../../services/salesServices";
+import { container } from 'tsyringe';
 
 const OrderForm = () => {
-    const {itemOptions, dishes} = useLoadDishes() as { itemOptions: [], dishes: DishInterfaces[] };
+    const {itemOptions, dishes} = useLoadDishes() as { itemOptions: [], dishes: [] };
     const {
         token,
         itemName,
@@ -20,6 +21,8 @@ const OrderForm = () => {
         dishTotalCost,
         registerInState,
     } = useOrderDispatch(dishes);
+
+    const service = container.resolve(SalesService);
 
     const {
         control,
@@ -30,7 +33,7 @@ const OrderForm = () => {
 
     const onSubmit = async (data: FormValuesOrder) => {
 
-        const result: Promise<any> = await send_orders(token, data);
+        const result: Promise<any> = await service.sendOrders(token, data);
         const customerName = data.customerName;
         const quantity = data.quantity;
         const order: OrderInterface = {customerName, itemName, quantity, totalCost};

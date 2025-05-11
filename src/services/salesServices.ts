@@ -1,43 +1,27 @@
-import axios from "axios";
+import axios from 'axios';
+import {injectable} from 'tsyringe';
 import baseURL from '../config';
-import {FormValuesOrder} from "../types/formValues";
+import {FormValuesOrder} from '../types/formValues';
+import {BaseService} from "./BaseService";
 
-export const get_dishes = async (token: string) => {
-    try {
-        const headers = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-            },
-        };
-        const response = await axios.get(`${baseURL}/api/dishes/`, headers);
+@injectable()
+export class SalesService extends BaseService {
+
+    async getDishes(token: string) {
+        const config = this.getAuthHeaders(token);
+        const response = await axios.get(`${baseURL}/api/dishes/`, config);
         return response.data;
-    } catch (error) {
-        console.error('Error al obtener los artículos:', error);
-        throw error;
     }
-};
 
-export const send_orders = async (token: string | null, data: FormValuesOrder): Promise<any> => {
-    try {
-        const headers = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-            },
-        };
+    async sendOrders(token: string | null, data: FormValuesOrder) {
+        const config = this.getAuthHeaders(token);
+
         const dataForm = {
             customer_name: data.customerName,
-            items: [
-                {
-                    dish: data.itemId,
-                    quantity: data.quantity,
-                }]
-        }
-        const response = await axios.post(`${baseURL}/api/orders/`, dataForm, headers);
-        return response.data;
+            items: [{ dish: data.itemId, quantity: data.quantity }],
+        };
 
-    } catch (error) {
-        throw error;
+        const response = await axios.post(`${baseURL}/api/orders/`, dataForm, config);
+        return response.data;
     }
 }

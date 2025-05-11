@@ -21,7 +21,7 @@ export const useOrderDispatch = (dishes: DishInterfaces[]) => {
         setTotalCost(0);
     };
 
-    const dishTotalCost = (quantityValue: Number, itemIdOptional: Number = 0) => {
+    const dishTotalCost = (quantityValue: number, itemIdOptional: number = 0) => {
         setQuantity(Number(quantityValue));
         const id = itemIdOptional > 0 ? itemIdOptional : itemId;
         if ((itemId > 0 || itemIdOptional > 0) && quantityValue > 0) {
@@ -35,7 +35,7 @@ export const useOrderDispatch = (dishes: DishInterfaces[]) => {
         }
     }
 
-    const setDish = (itemId: Number) => {
+    const setDish = (itemId: number) => {
         const selectedDish = dishes.find((dish: DishInterfaces) => dish.id === itemId);
         setItemName(selectedDish?.name ?? "");
         setItemId(Number(itemId));

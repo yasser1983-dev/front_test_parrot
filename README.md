@@ -10,6 +10,9 @@ comensales. Se podrá usar desde dispositivos móviles y de escritorio.
 src/
 ├── assets/                           # Archivos estáticos como imágenes, fuentes, etc.
 │   └── images/
+├── di/                               # Contenedor DI vive aquí
+│   ├── SalesServiceContext.tsx       # Hook y contexto React
+│   └── SalesServiceProvider.tsx      # Provider que inyecta instancia
 ├── components/                       # Componentes reutilizables
 │   ├── auth/
 │   │   └── Login.tsx                 # Pantalla de inicio de sesión
@@ -116,6 +119,12 @@ Organizar carpetas por funcionalidad y no por tipo de archivo
 g. **Service Layer Pattern**   
 
 Aislar llamadas HTTP en archivos de servicios para no acoplar lógica de red en los componentes.
+
+10. **Inyección de dependencias**
+ Permite testear componentes. Se puede inyectar mocks desde el provider. Permite múltiples entornos: producción, pruebas, staging, etc.
+
+11. **Singleton**
+Para tener una sola instancia en todo el proyecto de las clases de servicio.
 
 ### Ejecutar prueba
 ```bash

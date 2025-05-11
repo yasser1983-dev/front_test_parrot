@@ -1,13 +1,15 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ReportState} from "../../types/interfaces";
-import {getDailyReport} from "../../services/reportServices";
+import {ReportService} from "../../services/reportServices";
+import {container} from "tsyringe";
 
 // Async thunk
 export const fetchDailyReport = createAsyncThunk(
     "report/fetchDailyReport",
     async ({startDate, endDate}: { startDate: string; endDate: string }) => {
         const token = localStorage.getItem('token');
-        return await getDailyReport(startDate, endDate, token);
+        const service = container.resolve(ReportService);
+        return await service.getDailyReport(startDate, endDate, token);
     }
 );
 
